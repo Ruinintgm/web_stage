@@ -37,7 +37,8 @@ pipeline {
 		stage("Run container from Dockerhub") {
 			steps {
 				echo "=====================Running====================="
-				sh "cd docker ; docker-compose up -d"
+				sh "cd docker"
+				sh "docker-compose up -d"
 			}
 		}
 	}
