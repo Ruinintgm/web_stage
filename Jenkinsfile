@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-	agent { node ("avalanche") }
+	agent { node ("af-stage-all01") }
 	options {
 		buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
 		timestamps()
