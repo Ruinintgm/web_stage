@@ -20,16 +20,11 @@ pipeline {
 		}
     script{
       try{
-        stage("Remove previous container version!") {
-			steps {
-				echo "=====================Removing====================="
-        
-				sh "docker stop web_stage_avalanche"
-				sh "docker rm web_stage_avalanche"
-				sh "docker rmi avalancheforecast/main:web_stage_avalanche"
-				echo "Done!"
-                                }
-			}
+        echo "=====================Removing====================="
+	sh "docker stop web_stage_avalanche"
+	sh "docker rm web_stage_avalanche"
+	sh "docker rmi avalancheforecast/main:web_stage_avalanche"
+	echo "Done!"
       } catch (err) {
                 echo "Контейнера не было"
             }
