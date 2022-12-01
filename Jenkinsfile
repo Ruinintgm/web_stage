@@ -21,10 +21,10 @@ pipeline {
     script{
       try{
         echo "=====================Removing====================="
-	sh "docker-compose down"
+	sh "cd docker/stage ; docker-compose down" 
 	sh "docker rmi avalancheforecast/main:pipe_web_stage_parser"
-  	sh "docker rmi avalancheforecast/main:pipe_web_stage_frontend"
- 	sh "docker rmi avalancheforecast/main:pipe_web_stage_backend"
+	sh "docker rmi avalancheforecast/main:pipe_web_stage_frontend"
+	sh "docker rmi avalancheforecast/main:pipe_web_stage_backend"
 	echo "Done!"
       } catch (err) {
                 echo "Контейнера не было"
@@ -33,7 +33,7 @@ pipeline {
 		stage("Run container from Dockerhub") {
 			steps {
 				echo "=====================Running====================="
-				sh "cd docker ; docker-compose up -d"
+				sh "cd docker/stage ; docker-compose up -d "
 			}
 		}
 	}
