@@ -21,9 +21,10 @@ pipeline {
     script{
       try{
         echo "=====================Removing====================="
-	sh "docker stop web_stage_avalanche"
-	sh "docker rm web_stage_avalanche"
-	sh "docker rmi avalancheforecast/main:web_stage_avalanche"
+	sh "docker-compose down"
+	sh "docker rmi avalancheforecast/main:pipe_web_stage_parser"
+  	sh "docker rmi avalancheforecast/main:pipe_web_stage_frontend"
+ 	sh "docker rmi avalancheforecast/main:pipe_web_stage_backend"
 	echo "Done!"
       } catch (err) {
                 echo "Контейнера не было"
