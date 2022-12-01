@@ -1,0 +1,72 @@
+Started by user Хорахордин Артем Иванович
+Obtained Jenkinsfile from git git@github.com:Avalanche-Forecast/web_stage_avalanche.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on af-stage-all01 in /tmp/jenkins/workspace/web_stage_avalanche
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential avalanche_private_git_key
+Fetching changes from the remote Git repository
+ > git rev-parse --resolve-git-dir /tmp/jenkins/workspace/web_stage_avalanche/.git # timeout=10
+ > git config remote.origin.url git@github.com:Avalanche-Forecast/web_stage_avalanche.git # timeout=10
+Fetching upstream changes from git@github.com:Avalanche-Forecast/web_stage_avalanche.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.25.1'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- git@github.com:Avalanche-Forecast/web_stage_avalanche.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 45b4a25356e72e23b6e2a2b34d6d6d774a1e3059 (refs/remotes/origin/stage)
+Commit message: "Update Jenkinsfile"
+ > git rev-parse refs/remotes/origin/stage^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 45b4a25356e72e23b6e2a2b34d6d6d774a1e3059 # timeout=10
+ > git rev-list --no-walk 45b4a25356e72e23b6e2a2b34d6d6d774a1e3059 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Login Dockerhub)
+[Pipeline] withCredentials
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Remove container, try module)
+Stage "Remove container, try module" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run container from Dockerhub)
+Stage "Run container from Dockerhub" skipped due to earlier failure(s)
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] withCredentials
+03:42:53  Masking supported pattern matches of $TOKEN or $CHAT_ID
+[Pipeline] {
+[Pipeline] sh
+03:42:53  Warning: A secret was passed to "sh" using Groovy String interpolation, which is insecure.
+03:42:53  		 Affected argument(s) used the following variable(s): [CHAT_ID, TOKEN]
+03:42:53  		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
+03:42:54  + curl -s -X POST https://api.telegram.org/bot****/sendMessage -d chat_id=**** -d parse_mode=markdown -d 'text=*web_stage_avalanche* : POC  *Branch*: origin/stage *Build* : `Неудача :( Увы, что-то пошло не так`'
+03:42:54  {"ok":true,"result":{"message_id":565,"from":{"id":2084972240,"is_bot":true,"first_name":"Monitoring","username":"zabbixmain_bot"},"chat":{"id":****,"title":"Monitoring","type":"group","all_members_are_administrators":true},"date":1669855374,"text":"web_stage_avalanche : POC  Branch: origin/stage Build : \u041d\u0435\u0443\u0434\u0430\u0447\u0430 :( \u0423\u0432\u044b, \u0447\u0442\u043e-\u0442\u043e \u043f\u043e\u0448\u043b\u043e \u043d\u0435 \u0442\u0430\u043a","entities":[{"offset":0,"length":19,"type":"bold"},{"offset":27,"length":6,"type":"bold"},{"offset":48,"length":5,"type":"bold"},{"offset":56,"length":35,"type":"code"}]}}
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: Could not find credentials entry with ID 'avalancheforecast'
+Finished: FAILURE
